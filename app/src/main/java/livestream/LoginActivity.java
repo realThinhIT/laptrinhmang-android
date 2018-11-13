@@ -1,4 +1,4 @@
-package com.example.nttungg.livestream;
+package livestream;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.nttungg.livestream.server.SocketServerThread;
+import com.example.nttungg.livestream.R;
 
-import java.net.Socket;
+import livestream.server.SocketServerThread;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText mEditUsername;

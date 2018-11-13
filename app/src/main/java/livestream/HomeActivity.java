@@ -1,4 +1,4 @@
-package com.example.nttungg.livestream;
+package livestream;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.nttungg.livestream.adapter.ViewPagerAdapter;
+import com.example.nttungg.livestream.R;
+
+import livestream.adapter.ViewPagerAdapter;
+
 
 public class HomeActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
