@@ -23,8 +23,7 @@ public class MyApplication extends Application {
         mSocketServerThread.sendRequest(request);
     }
 
-    public void subscribeRequestResponse(Observer<BaseRequest> observer)
-            throws IOException, ClassNotFoundException {
+    public void subscribeRequestResponse(Observer<BaseRequest> observer) {
         mSocketServerThread.subscribeRequestResponse(observer);
     }
 }

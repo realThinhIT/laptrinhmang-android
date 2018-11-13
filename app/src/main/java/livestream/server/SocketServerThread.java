@@ -29,7 +29,7 @@ public class SocketServerThread extends Thread {
     }
 
     private void initSocket() throws IOException, ClassNotFoundException {
-        mSocket = new Socket("172.20.10.4", 9999);
+        mSocket = new Socket("45.77.47.122", 9999);
 
         mObjectOutputStream = new ObjectOutputStream(mSocket.getOutputStream());
         ObjectInputStream objectInputStream = new ObjectInputStream(mSocket.getInputStream());
@@ -52,12 +52,7 @@ public class SocketServerThread extends Thread {
         mObjectOutputStream.writeObject(request);
     }
 
-    public void subscribeRequestResponse(Observer<BaseRequest> observer)
-            throws IOException, ClassNotFoundException {
-        if (mSocket == null || mSocket.isClosed() || mObjectInputStream == null) {
-            initSocket();
-        }
-
+    public void subscribeRequestResponse(Observer<BaseRequest> observer) {
         mRequestResponseEmitter.subscribe(observer);
     }
 }

@@ -11,12 +11,9 @@ import android.widget.TextView;
 
 import com.example.nttungg.livestream.R;
 
-import java.io.IOException;
-
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import livestream.BaseActivity;
-import livestream.MyApplication;
 import livestream.models.BaseRequest;
 import livestream.models.User;
 import livestream.utils.StringUtils;
@@ -47,14 +44,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
             @Override
             public void onNext(BaseRequest request) {
-                Log.d("AMEN", "onNext: " + request.getTypeRequest());
-//                switch (request.getTypeRequest()) {
-//                    case 0:
-//                        showToast(request.getMessage());
-//                        break;
-//                    default:
-//                        break;
-//                }
+                runOnUiThread(() -> {
+                    switch (request.getTypeRequest()) {
+                        case 0:
+                            showToast(request.getMessage());
+                            break;
+                        default:
+                            break;
+                    }
+                });
             }
 
             @Override
@@ -72,11 +70,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
-        subscribleRequestResponse(mObserver);
+        subscribeRequestResponse(mObserver);
     }
 
     @Override
     protected void onStop() {
+        mObserver.onComplete();
         super.onStop();
     }
 
