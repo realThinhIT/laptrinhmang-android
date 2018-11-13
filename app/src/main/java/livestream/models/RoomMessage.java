@@ -4,25 +4,25 @@ import java.io.Serializable;
 
 public class RoomMessage implements Serializable {
 
-    private long mId;
+    private int mId;
     private String mContent;
-    private long mUserId;
-    private long mRoomId;
     private String mCreateAt;
+    private User mUser;
+    private int mRoomId;
 
-    public RoomMessage(long id, String content, long userId, long roomId, String createAt) {
+    public RoomMessage(int id, String content, User user, String createAt, int roomId) {
         mId = id;
         mContent = content;
-        mUserId = userId;
-        mRoomId = roomId;
         mCreateAt = createAt;
+        mUser = user;
+        mRoomId = roomId;
     }
 
-    public long getId() {
+    public int getId() {
         return mId;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         mId = id;
     }
 
@@ -34,27 +34,27 @@ public class RoomMessage implements Serializable {
         mContent = content;
     }
 
-    public long getUserId() {
-        return mUserId;
-    }
-
-    public void setUserId(long userId) {
-        mUserId = userId;
-    }
-
-    public long getRoomId() {
-        return mRoomId;
-    }
-
-    public void setRoomId(long roomId) {
-        mRoomId = roomId;
-    }
-
     public String getCreateAt() {
         return mCreateAt;
     }
 
     public void setCreateAt(String createAt) {
         mCreateAt = createAt;
+    }
+
+    public User getUser() {
+        return mUser;
+    }
+
+    public void setUser(User user) {
+        mUser = user;
+    }
+
+    public int getmRoomId() {
+        return mRoomId;
+    }
+
+    public void setmRoomId(int mRoomId) {
+        this.mRoomId = mRoomId;
     }
 }

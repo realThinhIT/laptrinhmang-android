@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import java.lang.annotation.Retention;
 
-import livestream.BlankFragment;
-import livestream.ProfileFragment;
+import livestream.screen.BlankFragment;
+import livestream.screen.ProfileFragment;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 

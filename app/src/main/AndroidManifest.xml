@@ -18,6 +18,7 @@
         android:targetSdkVersion="21" />
 
     <application
+        android:name="livestream.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,7 +27,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="livestream.LoginActivity"
+            android:name="livestream.screen.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,11 +36,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="livestream.RegisterActivity"
+            android:name="livestream.screen.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name="livestream.HomeActivity"
+            android:name="livestream.screen.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
