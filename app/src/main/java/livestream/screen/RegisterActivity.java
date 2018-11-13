@@ -1,4 +1,4 @@
-package livestream;
+package livestream.screen;
 
 import android.content.Context;
 import android.content.Intent;
