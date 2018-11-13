@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,13 +12,21 @@ import android.widget.TextView;
 
 import com.example.nttungg.livestream.R;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import livestream.BaseActivity;
+import livestream.models.BaseRequest;
+import livestream.models.User;
+import livestream.utils.Constant;
+
+public class RegisterActivity extends BaseActivity implements View.OnClickListener{
     private EditText mEditFullname;
     private EditText mEditUsername;
     private EditText mEditRePassword;
     private EditText mEditPassword;
     private Button mButtonRegister;
     private TextView mTextLogin;
+    private Observer<BaseRequest> mObserver;
 
     public static Intent getRegisterIntent(Context context) {
         Intent mIntent = new Intent(context, RegisterActivity.class);
@@ -29,6 +38,52 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initUI();
+
+        mObserver = new Observer<BaseRequest>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(BaseRequest request) {
+                runOnUiThread(() -> {
+                    switch (request.getTypeRequest()) {
+                        case 1:
+                            showToast(request.getMessage());
+                            if (request.getMessage().equals("Register success")) {
+                               RegisterActivity.this.onBackPressed();
+                                RegisterActivity.this.finish();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        subscribeRequestResponse(mObserver);
+    }
+
+    @Override
+    protected void onStop() {
+        mObserver.onComplete();
+        super.onStop();
     }
 
     private void initUI() {
@@ -46,7 +101,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.button_register:
-
+                if (!mEditPassword.getText().toString().equals(mEditRePassword.getText().toString())){
+                    showToast("Password does not match");
+                } else {
+                    User user = new User(0, mEditUsername.getText().toString(), mEditPassword.getText().toString(), mEditFullname.getText().toString(), "");
+                    sendRequest(new BaseRequest<>(1, "", user));
+                }
                 break;
             case R.id.textView_login:
                 onBackPressed();

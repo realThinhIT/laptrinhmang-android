@@ -16,6 +16,7 @@ import io.reactivex.disposables.Disposable;
 import livestream.BaseActivity;
 import livestream.models.BaseRequest;
 import livestream.models.User;
+import livestream.utils.Constant;
 import livestream.utils.StringUtils;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
@@ -23,7 +24,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private EditText mEditPassword;
     private Button mButtonLogin;
     private TextView mTextRegister;
-    private Observer<BaseRequest> mObserver ;
+    private Observer<BaseRequest> mObserver;
 
     public static Intent getLoginIntent(Context context) {
         Intent mIntent = new Intent(context, LoginActivity.class);
@@ -48,6 +49,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     switch (request.getTypeRequest()) {
                         case 0:
                             showToast(request.getMessage());
+                            if (request.getMessage().equals("Login success")) {
+                                Constant.sUser = (User) request.getData();
+                                startActivity(HomeActivity.getHomeIntent(LoginActivity.this));
+                                LoginActivity.this.finish();
+                            }
                             break;
                         default:
                             break;
