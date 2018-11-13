@@ -1,4 +1,4 @@
-package com.example.nttungg.livestream.models;
+package livestream.models;
 
 import java.io.Serializable;
 

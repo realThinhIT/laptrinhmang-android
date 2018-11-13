@@ -1,13 +1,14 @@
-package com.example.nttungg.livestream.adapter;
+package livestream.adapter;
 
 import android.support.annotation.IntDef;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.example.nttungg.livestream.BlankFragment;
-import com.example.nttungg.livestream.ProfileFragment;
-
 import java.lang.annotation.Retention;
+
+import livestream.BlankFragment;
+import livestream.ProfileFragment;
+
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
