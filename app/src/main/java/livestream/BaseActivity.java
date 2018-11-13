@@ -40,16 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }.start();
     }
 
-    public void subscribleRequestResponse(Observer<BaseRequest> observer) {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    ((MyApplication) getApplication()).subscribeRequestResponse(observer);
-                } catch (IOException | ClassNotFoundException e) {
-                    Log.d("AMEN - BaseActivity", "subscribleRequestResponse: " + e);
-                }
-            }
-        }.start();
+    public void subscribeRequestResponse(Observer<BaseRequest> observer) {
+        ((MyApplication) getApplication()).subscribeRequestResponse(observer);
     }
 }
